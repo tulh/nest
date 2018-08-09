@@ -3,5 +3,6 @@
   "host": "localhost",
   "database": "test",
   "entities": ["src/**/**.entity{.ts,.js}"],
-  "synchronize": true
+  "synchronize": true,
+  "logging": true
 }

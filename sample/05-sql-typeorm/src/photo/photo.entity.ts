@@ -1,17 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
+import {User} from "../user/user.entity";
 
 @Entity()
 export class Photo {
-  @PrimaryGeneratedColumn() id: number;
+    @PrimaryGeneratedColumn() id: number;
 
-  @Column({ length: 500 })
-  name: string;
+    @Column({length: 20})
+    name: string;
 
-  @Column('text') description: string;
+    @Column('text') description: string;
 
-  @Column() filename: string;
+    @Column() filename: string;
 
-  @Column('int') views: number;
+    @Column('int') views: number;
 
-  @Column() isPublished: boolean;
+    @Column() isPublished: boolean;
+
+    @ManyToOne(type => User, user => user.photos)
+    user: User;
 }
