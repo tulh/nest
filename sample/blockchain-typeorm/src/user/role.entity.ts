@@ -1,34 +1,39 @@
 import {
-  Column,
-  CreateDateColumn,
-  Entity, JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  VersionColumn,
+    Column,
+    CreateDateColumn,
+    Entity, JoinTable,
+    ManyToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+    VersionColumn,
 } from 'typeorm';
-import { User } from './user.entity';
+import {User} from './user.entity';
+import {ApiModelProperty} from '@nestjs/swagger';
 
 export enum RoleName {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
-  OPS = 'OPS',
+    ADMIN = 'ADMIN',
+    USER = 'USER',
+    OPS = 'OPS',
 }
 
 @Entity()
 export class Role {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @CreateDateColumn({ type: 'datetime' })
-  createTime: Date;
-  @UpdateDateColumn({ type: 'datetime' })
-  updatedDate: Date;
-  @VersionColumn()
-  version: number;
-  @Column({ type: 'enum', enum: RoleName, nullable: false, unique: true })
-  name: RoleName;
-  @Column({ type: 'tinyint', nullable: false, default: 1 })
-  active: number;
-  @ManyToMany(type => User, user => user.roles)
-  users: Promise<User[]>;
+    @PrimaryGeneratedColumn()
+    @ApiModelProperty()
+    id: number;
+    @CreateDateColumn({type: 'datetime'})
+    @ApiModelProperty()
+    createTime: Date;
+    @UpdateDateColumn({type: 'datetime'})
+    @ApiModelProperty()
+    updatedDate: Date;
+    @VersionColumn()
+    version: number;
+    @Column({type: 'enum', enum: RoleName, nullable: false, unique: true})
+    @ApiModelProperty({enum: ['ADMIN', 'USER', 'OPS']})
+    name: RoleName;
+    @Column({type: 'tinyint', nullable: false, default: 1})
+    active: number;
+    @ManyToMany(type => User, user => user.roles)
+    users: Promise<User[]>;
 }

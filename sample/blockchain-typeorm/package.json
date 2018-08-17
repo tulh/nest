@@ -19,13 +19,16 @@
   "dependencies": {
     "@nestjs/common": "^5.0.0",
     "@nestjs/core": "^5.0.0",
+    "@nestjs/swagger": "^2.2.0",
     "@nestjs/typeorm": "latest",
+    "aws-sdk": "^2.294.0",
     "fastify-formbody": "^2.0.0",
     "mysql": "^2.16.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
     "typeorm": "latest",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "class-validator": "latest"
   },
   "devDependencies": {
     "@nestjs/testing": "^5.0.0",
